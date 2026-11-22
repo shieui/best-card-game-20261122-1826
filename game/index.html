@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emberfall — Duel of the Four Winds</title>
+<link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+<div id="app">
+  <!-- Title screen -->
+  <section id="title-screen" class="screen">
+    <div class="title-inner">
+      <p class="title-kicker">A duel of the four winds</p>
+      <h1>EMBERFALL</h1>
+      <p class="title-tag">Four winds. One court. Thirty lives. No mercy.</p>
+      <p class="title-blurb">
+        You are the Ember Warden, challenger of the night court. Wren the Gale
+        waits across the table with a deck of wind-spirits. Spend mana, play
+        spirits, and strike her life to zero before she strikes yours.
+        Play two spirits of the same wind in one turn to raise a
+        <strong>Wind Surge</strong> — the second hits +2 harder.
+      </p>
+      <button id="start-button" class="big-button" type="button">Begin the duel</button>
+      <p class="title-hint">Click a card to choose it, click again or press Enter to play it.
+        Keys 1–7 pick a card · E ends your turn · R restarts after a duel.</p>
+      <div class="title-winds" aria-hidden="true">
+        <span class="wind-chip wind-flame">▲ Flame</span>
+        <span class="wind-chip wind-tide">≋ Tide</span>
+        <span class="wind-chip wind-leaf">❖ Leaf</span>
+        <span class="wind-chip wind-stone">◆ Stone</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- The table -->
+  <main id="table" class="hidden" aria-label="Duel table">
+    <header id="topbar">
+      <div class="duelist" id="rival-box">
+        <span class="duelist-name">Wren the Gale</span>
+        <span class="life-wrap"><span class="life-label">Life</span>
+          <span class="life-bar"><span id="rival-life-fill" class="life-fill"></span></span>
+          <span id="rival-life-text" class="life-text">30</span></span>
+        <span id="rival-shield" class="shield-badge hidden">◆ 0</span>
+        <span id="rival-deck" class="deck-count">Deck 26</span>
+      </div>
+      <div id="turn-banner">
+        <span id="turn-text">Turn 1</span>
+        <span id="phase-text">Your move</span>
+      </div>
+      <div class="duelist" id="player-box">
+        <span class="duelist-name">You · Ember Warden</span>
+        <span class="life-wrap"><span class="life-label">Life</span>
+          <span class="life-bar"><span id="player-life-fill" class="life-fill"></span></span>
+          <span id="player-life-text" class="life-text">30</span></span>
+        <span id="player-shield" class="shield-badge hidden">◆ 0</span>
+        <span id="player-deck" class="deck-count">Deck 26</span>
+      </div>
+    </header>
+
+    <section id="rival-hand" aria-label="Rival's hand"></section>
+
+    <section id="middle">
+      <div id="mana-row" aria-label="Mana">
+        <span class="mana-label">Mana</span>
+        <span id="mana-crystals"></span>
+        <span id="mana-text">1 / 1</span>
+      </div>
+      <div id="arena">
+        <div id="last-play" class="last-play-empty">The table waits for the first spirit…</div>
+        <ol id="duel-log" aria-live="polite"></ol>
+      </div>
+      <div id="actions">
+        <button id="end-turn-button" class="big-button" type="button">End turn <kbd>E</kbd></button>
+        <p id="combo-note" class="combo-note hidden">Wind Surge ready: a second spirit of the same wind hits +2.</p>
+      </div>
+    </section>
+
+    <section id="player-hand" aria-label="Your hand"></section>
+    <p id="hand-hint">Click a card to choose it · click again or press Enter to play · keys 1–7 select</p>
+  </main>
+
+  <!-- Win / loss screen -->
+  <section id="end-screen" class="screen hidden">
+    <div class="end-inner">
+      <h2 id="end-title">Victory</h2>
+      <p id="end-story"></p>
+      <dl id="end-stats"></dl>
+      <button id="again-button" class="big-button" type="button">Duel again <kbd>R</kbd></button>
+      <p class="title-hint">Or press R to shuffle up a fresh deck.</p>
+    </div>
+  </section>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
